@@ -19,12 +19,20 @@ export class CategoriesService {
     return this.http.get<CategoryListItem[]>(this.apiControllerUrl);
   }
 
-  // getById(id: number): Observable<CategoryListItem[]> {
-  //   return this.http.get<CategoryListItem[]>(`${this.apiControllerUrl}/${id}`);
-  // }
+  getById(id: number): Observable<CategoryListItem[]> {
+     return this.http.get<CategoryListItem[]>(`${this.apiControllerUrl}/${id}`);
+   }
 
   add(category: NewCategory): Observable<AddedCategory> {
-    return this.http.post<AddedCategory>(this.apiControllerUrl, category) // AddedCategory modele uygun cevap veriyor olacak
+    return this.http.post<AddedCategory>(this.apiControllerUrl, category)
   }
+
+
+ edit(updatedData: any, id: number): Observable<CategoryListItem[]>{
+  return this.http.put<CategoryListItem[]>(`${this.apiControllerUrl}/${id}`, updatedData)
+}
+
+// delete()
+
 
 }
