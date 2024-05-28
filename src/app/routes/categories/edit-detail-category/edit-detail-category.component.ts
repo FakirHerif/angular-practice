@@ -9,6 +9,7 @@ import { CategoryListItem } from '../../../features/categories/models/category-l
 import { switchMap } from 'rxjs';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NewCategory } from '../../../features/categories/models/new-category';
+import { error } from 'node:console';
 
 @Component({
   selector: 'app-edit-detail-category',
@@ -37,8 +38,8 @@ export class EditDetailCategoryComponent implements OnInit {
 
 
   ngOnInit(): void {
-this.getCategoryIdFromRoute();
-this.createFormForCategory();
+    this.createFormForCategory();
+    this.getCategoryIdFromRoute();
 }
 
 private createFormForCategory(){
@@ -57,7 +58,11 @@ const saveCategory: NewCategory = {
 this.categoriesService.edit(saveCategory, this.category.id).subscribe({
   next: (editedCategory) =>{
     console.log('KATEGORİ DEĞİŞTİRİLDİ.', editedCategory);
+    this.getCategoryIdFromRoute();
   },
+  error: (error) => {
+    console.error('Kategori güncellenemedi', error);
+  }
 })
 }
 
@@ -76,15 +81,19 @@ getCategoryIdFromRoute() {
       return this.categoriesService.getById(categoryId);
 
     })
-  ).subscribe(
-    (category) => {
-      console.log('API Response:', category); 
+  ).subscribe({
+    next: (category) => {
+      console.log('API Response:', category);
       this.category = category;
-      this.saveCategoryForm.patchValue({name: this.category?.name, description: this.category?.description})
+      if (this.category){
+        this.saveCategoryForm.patchValue({
+          name: this.category?.name,
+          description: this.category?.description
+        });
+      }
     },
-    (error) => {
-      console.error('Kategori alınamadı', error);
+    error:(error) => {
+      console.error('Kategori alınamadı.', error);
     }
-  );
-
+  });
 }}
