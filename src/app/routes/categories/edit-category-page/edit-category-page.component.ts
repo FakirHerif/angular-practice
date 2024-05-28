@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
   ],
   templateUrl: './edit-category-page.component.html',
   styleUrl: './edit-category-page.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class EditCategoryPageComponent implements OnInit {
 
@@ -40,7 +40,8 @@ export class EditCategoryPageComponent implements OnInit {
   } 
   getList() {
     this.categoriesService.getList().subscribe((categories) => {
-      this.categories = categories;      
+      this.categories = categories;
+      console.log(categories);
     })
   }
  
