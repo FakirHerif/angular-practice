@@ -10,6 +10,7 @@ import { switchMap } from 'rxjs';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NewCategory } from '../../../features/categories/models/new-category';
 import { error } from 'node:console';
+import { FormControlErrorMessagePipe } from '../../../shared/pipes/formControlErrorMessage.pipe';
 
 @Component({
   selector: 'app-edit-detail-category',
@@ -18,7 +19,8 @@ import { error } from 'node:console';
     CommonModule,
     BasicLayoutComponent,
     CategoryListGroupComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormControlErrorMessagePipe
   ],
   templateUrl: './edit-detail-category.component.html',
   styleUrl: './edit-detail-category.component.scss',
@@ -44,8 +46,8 @@ export class EditDetailCategoryComponent implements OnInit {
 
 private createFormForCategory(){
   this.saveCategoryForm = this.formBuilder.group({
-    name:['',[Validators.required, Validators.minLength(1)]],
-    description: ['',[Validators.required, Validators.minLength(1)]]
+    name:['',[Validators.required, Validators.minLength(3)]],
+    description: ['',[Validators.required, Validators.minLength(3)]]
   })
 }
 
