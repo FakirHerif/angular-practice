@@ -11,6 +11,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { NewCategory } from '../../../features/categories/models/new-category';
 import { error } from 'node:console';
 import { FormControlErrorMessagePipe } from '../../../shared/pipes/formControlErrorMessage.pipe';
+import { ButtonDirective } from '../../../shared/directives/button.directive';
 
 @Component({
   selector: 'app-edit-detail-category',
@@ -20,7 +21,8 @@ import { FormControlErrorMessagePipe } from '../../../shared/pipes/formControlEr
     BasicLayoutComponent,
     CategoryListGroupComponent,
     ReactiveFormsModule,
-    FormControlErrorMessagePipe
+    FormControlErrorMessagePipe,
+    ButtonDirective
   ],
   templateUrl: './edit-detail-category.component.html',
   styleUrl: './edit-detail-category.component.scss',
