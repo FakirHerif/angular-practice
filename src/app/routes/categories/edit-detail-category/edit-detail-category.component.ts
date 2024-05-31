@@ -12,6 +12,7 @@ import { NewCategory } from '../../../features/categories/models/new-category';
 import { error } from 'node:console';
 import { FormControlErrorMessagePipe } from '../../../shared/pipes/formControlErrorMessage.pipe';
 import { ButtonDirective } from '../../../shared/directives/button.directive';
+import { NoCharacterInputDirective } from '../../../shared/directives/noCharacterInput.directive';
 
 @Component({
   selector: 'app-edit-detail-category',
@@ -22,7 +23,8 @@ import { ButtonDirective } from '../../../shared/directives/button.directive';
     CategoryListGroupComponent,
     ReactiveFormsModule,
     FormControlErrorMessagePipe,
-    ButtonDirective
+    ButtonDirective,
+    NoCharacterInputDirective
   ],
   templateUrl: './edit-detail-category.component.html',
   styleUrl: './edit-detail-category.component.scss',
