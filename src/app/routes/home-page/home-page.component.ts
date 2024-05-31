@@ -5,6 +5,7 @@ import { BasicLayoutComponent } from '../../shared/components/basic-layout/basic
 import { CategoryListGroupComponent } from '../../features/categories/components/category-list-group/category-list-group.component';
 import { ProductCardListComponent } from '../../features/products/components/product-card-list/product-card-list.component';
 import { ProductListItem } from '../../features/products/models/product-list-item';
+import { MultipleDirective } from '../../shared/directives/multiple.directive';
 
 @Component({
   selector: 'app-home-page',
@@ -14,7 +15,8 @@ import { ProductListItem } from '../../features/products/models/product-list-ite
     RouterModule,
     BasicLayoutComponent,
     CategoryListGroupComponent,
-    ProductCardListComponent
+    ProductCardListComponent,
+    MultipleDirective
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
