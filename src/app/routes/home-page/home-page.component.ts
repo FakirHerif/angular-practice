@@ -6,6 +6,7 @@ import { CategoryListGroupComponent } from '../../features/categories/components
 import { ProductCardListComponent } from '../../features/products/components/product-card-list/product-card-list.component';
 import { ProductListItem } from '../../features/products/models/product-list-item';
 import { MultipleDirective } from '../../shared/directives/multiple.directive';
+import { WelcomeDirective } from '../../shared/directives/welcome.directive';
 
 @Component({
   selector: 'app-home-page',
@@ -16,7 +17,8 @@ import { MultipleDirective } from '../../shared/directives/multiple.directive';
     BasicLayoutComponent,
     CategoryListGroupComponent,
     ProductCardListComponent,
-    MultipleDirective
+    MultipleDirective,
+    WelcomeDirective
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
