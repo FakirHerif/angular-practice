@@ -13,6 +13,7 @@ import { error } from 'node:console';
 import { FormControlErrorMessagePipe } from '../../../shared/pipes/formControlErrorMessage.pipe';
 import { ButtonDirective } from '../../../shared/directives/button.directive';
 import { NoCharacterInputDirective } from '../../../shared/directives/noCharacterInput.directive';
+import { DirtyFormService } from '../../../shared/services/dirtyForm.service';
 
 @Component({
   selector: 'app-edit-detail-category',
@@ -39,6 +40,7 @@ export class EditDetailCategoryComponent implements OnInit {
     private route: ActivatedRoute,
     private categoriesService: CategoriesService,
     private formBuilder: FormBuilder,
+    public dirtyFormService: DirtyFormService
   ){}
 
 
@@ -52,7 +54,12 @@ private createFormForCategory(){
   this.saveCategoryForm = this.formBuilder.group({
     name:['',[Validators.required, Validators.minLength(3)]],
     description: ['',[Validators.required, Validators.minLength(3)]]
-  })
+  });
+
+  this.saveCategoryForm.valueChanges.subscribe((value) => {
+    // console.log('Form değerleri değişti:', value);
+    this.dirtyFormService.setFormDirty(this.saveCategoryForm);
+  });
 }
 
 
